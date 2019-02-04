@@ -1,4 +1,9 @@
-/* Employee Class - Create a class called Employee that includes three instance variables - a first name (type String),
+/* 
+  Author: Hameed Abdul
+  Date : 2/3/2019
+  
+  Desrcription: CSC 317 Assignment 1
+Employee Class - Create a class called Employee that includes three instance variables - a first name (type String),
  a last name (type String) and a monthly salary (double).  Provide a constructor that initializes the three instance variables.
    Provide a set and a get method for each instance variable.  If the monthly salary is not positive, do not set its value.  
    Write a test application named EmployeeTest that demonstrates class Employee's capabilities.  
