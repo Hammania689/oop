@@ -6,21 +6,15 @@
     "configurations": [
         {
             "type": "java",
-            "name": "CodeLens (Launch) - Sales",
-            "request": "launch",
-            "mainClass": "Sales"
-        },
-        {
-            "type": "java",
             "name": "Debug (Launch) - Current File",
             "request": "launch",
             "mainClass": "${file}"
         },
         {
             "type": "java",
-            "name": "Debug (Launch)-EmployeeTest",
+            "name": "Debug (Launch)-DeckOfCardsTest",
             "request": "launch",
-            "mainClass": "EmployeeTest"
+            "mainClass": "DeckOfCardsTest"
         }
     ]
 }
