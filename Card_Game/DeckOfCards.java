@@ -66,7 +66,7 @@ public class DeckOfCards {
          System.out.print(remaining_hands + "/10) ");
          for (int x = 0; x < hand.length; x++) {
             hand[x] = dealCard();
-            System.out.printf("%s | ", hand[x]);
+            System.out.printf("%-18s\t| ", hand[x]);
          }
 
          // Update the number of remaining cards
@@ -79,8 +79,138 @@ public class DeckOfCards {
       System.out.println(remaining_deck);
       return hand;
    }
-}
 
+   public int rankHand(Card[] hand) {
+
+      int rank = 0;
+      int[] face_freq = new int[12];
+      int[] suit_freq = new int[4];
+
+      String[] faces = { "Ace", "Deuce", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack",
+            "Queen", "King" };
+      String[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
+
+      for (Card cur_card : hand) {
+         // System.out.println(cur_card + "\n===========");
+
+         int f = find(faces, cur_card.getFace());
+         int s = find(suits, cur_card.getSuit());
+
+         face_freq[f] += 1;
+         suit_freq[s] += 1;
+      }
+
+      /**
+       * 
+       * rank is {0 ... 7}
+       * 
+       * for (int suit : suits ) if suit == 5 rank = 5
+       * 
+       * 
+       * 0) Nothing 1) a pair if the face value == 2 only once 2) two pairs if the
+       * face value == 2 twice 3) three of a kind (e.g., three jacks) if the face
+       * value == 3 4) four of a kind (e.g., four aces) if the face value == 4 5)
+       * flush (i.e., all five cards of the same suit) if the suit value == 5 once 6)
+       * straight (i.e., five cards of consecutive face values) if the face value == 5
+       * 7) full house (i.e., two cards of one face value and three cards of another
+       * face value) if both two pairs and three cards; where index != to one another
+       */
+
+      int straight_counter = 0;
+      // boolean isFullHouse = false;
+
+      for (int x : face_freq) {
+         System.out.printf("%-2s", x);
+
+         if (x == 1) {
+            straight_counter++;
+         } else {
+            straight_counter = 0;
+         }
+
+         switch (x) {
+         case 2:
+            rank += 1;
+            break;
+         case 3:
+            rank = 3;
+            break;
+         // case 4:
+         // k = 4;
+         // ak;
+         default:
+            break;
+         }
+
+         // // Check if hand is a Straight
+         // if (straight_counter == 5) {
+         // rank = 6;
+         // }
+      }
+
+      System.out.println();
+
+      for (int x : suit_freq) {
+         System.out.printf("%-2s", x);
+         if (x == 5) {
+            rank = 5;
+         }
+      }
+
+      System.out.println();
+      System.out.printf("Rank: %s\n", rank);
+      return rank;
+   }
+
+   public int find(String[] cardVal, String target) {
+      for (int i = 0; i < cardVal.length; i++)
+         if (cardVal[i] == target)
+            return i;
+      return -1;
+   }
+
+   public Card[] testPair() {
+
+      String[] faces = { "Ace", "Deuce", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack",
+            "Queen", "King" };
+      String[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
+
+      Card[] hand = new Card[5];
+      hand[0] = new Card(faces[0], suits[0]); // Ace of Hearts
+      hand[1] = new Card(faces[0], suits[1]); // Ace of Diamonds
+      hand[2] = new Card(faces[2], suits[1]); // Three of Diamonds
+      hand[3] = new Card(faces[4], suits[2]); // Five of Clubs
+      hand[4] = new Card(faces[1], suits[3]); // Deuce of Spades
+
+      // Print test hand
+      for (Card card : hand) {
+         System.out.printf("%-18s\t| ", card);
+      }
+      System.out.println();
+      return hand;
+   }
+
+   public Card[] testTwoPair() {
+
+      String[] faces = { "Ace", "Deuce", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack",
+            "Queen", "King" };
+      String[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
+
+      Card[] hand = new Card[5];
+      hand[0] = new Card(faces[0], suits[0]); // Ace of Hearts
+      hand[1] = new Card(faces[0], suits[1]); // Ace of Diamonds
+      hand[2] = new Card(faces[2], suits[1]); // Three of Diamonds
+      hand[3] = new Card(faces[2], suits[2]); // Three of Clubs
+      hand[4] = new Card(faces[1], suits[3]); // Deuce of Spades
+
+      // Print test hand
+      for (Card card : hand) {
+         System.out.printf("%-18s\t| ", card);
+      }
+      System.out.println();
+      return hand;
+   }
+}
 /**************************************************************************
  * (C) Copyright 1992-2018 by Deitel & Associates, Inc. and * Pearson Education,
  * Inc. All Rights Reserved. * * DISCLAIMER: The authors and publisher of this

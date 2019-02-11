@@ -4,18 +4,50 @@
 public class DeckOfCardsTest {
    // execute application
    public static void main(String[] args) {
+
+      // Code from book
+      // dealAllCards();
+      // dealAllHands();
+
+      DeckOfCards m = new DeckOfCards();
+      Card[] pair = m.testPair();
+      Card[] two_pairs = m.testTwoPair();
+      m.rankHand(pair);
+      m.rankHand(two_pairs);
+   }
+
+   // Default code from book
+   public static void dealAllCards() {
       DeckOfCards myDeckOfCards = new DeckOfCards();
       myDeckOfCards.shuffle(); // place Cards in random order
 
       // print all 52 Cards in the order in which they are dealt
-      for (int i = 1; i <= 52 / 5; i++) {
+      for (int i = 1; i <= 52; i++) {
          // deal and display a Card
-         System.out.printf("%-19s", myDeckOfCards.dealHand());
+         System.out.printf("%-19s", myDeckOfCards.dealCard());
 
          if (i % 4 == 0) { // output a newline after every fourth card
             System.out.println();
          }
       }
+   }
+
+   // Deal all hands in a deck
+   public static void dealAllHands() {
+      DeckOfCards myDeckOfCards = new DeckOfCards();
+      myDeckOfCards.shuffle(); // place Cards in random order
+
+      Card[] hand = new Card[5];
+
+      // print all 52 Cards in the order in which they are dealt
+      for (int i = 1; i <= 52 / 5; i++) {
+         // deal and display a Card
+         hand = myDeckOfCards.dealHand();
+      }
+
+      int test = myDeckOfCards.rankHand(hand);
+      System.out.println(test);
+
    }
 }
 
