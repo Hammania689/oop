@@ -10,12 +10,19 @@ public class DeckOfCardsTest {
       // dealAllHands();
 
       DeckOfCards m = new DeckOfCards();
-      Card[] pair = m.testPair();
-      Card[] two_pairs = m.testTwoPair();
-      Card[] three_kind = m.testThreeOfAKind();
-      // m.rankHand(pair);
+      // Card[] pair = m.testPair();
+      // Card[] two_pairs = m.testTwoPair();
+      // Card[] three_kind = m.testThreeOfAKind();
+      // Card[] four_kind = m.testFourOfAKind();
+      // Card[] flush = m.testFlush();
+      Card[] straight = m.testStraight();
+
       // m.rankHand(two_pairs);
-      m.rankHand(three_kind);
+      // m.rankHand(three_kind);
+      // m.rankHand(four_kind);
+      // m.rankHand(flush);
+      m.rankHand(straight);
+
    }
 
    // Default code from book
