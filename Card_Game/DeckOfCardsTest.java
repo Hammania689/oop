@@ -12,8 +12,10 @@ public class DeckOfCardsTest {
       DeckOfCards m = new DeckOfCards();
       Card[] pair = m.testPair();
       Card[] two_pairs = m.testTwoPair();
-      m.rankHand(pair);
-      m.rankHand(two_pairs);
+      Card[] three_kind = m.testThreeOfAKind();
+      // m.rankHand(pair);
+      // m.rankHand(two_pairs);
+      m.rankHand(three_kind);
    }
 
    // Default code from book

@@ -210,6 +210,27 @@ public class DeckOfCards {
       System.out.println();
       return hand;
    }
+
+   public Card[] testThreeOfAKind() {
+
+      String[] faces = { "Ace", "Deuce", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack",
+            "Queen", "King" };
+      String[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
+
+      Card[] hand = new Card[5];
+      hand[0] = new Card(faces[0], suits[0]); // Ace of Hearts
+      hand[1] = new Card(faces[1], suits[1]); // Two of Diamonds
+      hand[2] = new Card(faces[2], suits[1]); // Three of Diamonds
+      hand[3] = new Card(faces[2], suits[2]); // Three of Clubs
+      hand[4] = new Card(faces[2], suits[3]); // Three of Spades
+
+      // Print test hand
+      for (Card card : hand) {
+         System.out.printf("%-18s\t| ", card);
+      }
+      System.out.println();
+      return hand;
+   }
 }
 /**************************************************************************
  * (C) Copyright 1992-2018 by Deitel & Associates, Inc. and * Pearson Education,
