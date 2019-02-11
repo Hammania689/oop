@@ -84,7 +84,7 @@ public class DeckOfCards {
       int rank = 0;
       int straight_counter = 0;
 
-      int[] face_freq = new int[12];
+      int[] face_freq = new int[13];
       int[] suit_freq = new int[4];
 
       String[] faces = { "Ace", "Deuce", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack",
@@ -103,22 +103,17 @@ public class DeckOfCards {
       for (Card cur_card : hand) {
          // int f = find(faces, cur_card.getFace());
          // int s = find(suits, cur_card.getSuit());
-         for (int i = 1; i <= face_freq.length; i++) {
+         for (int i = 0; i < face_freq.length; i++) {
             if (faces[i].equals(cur_card.getFace())) {
-               face_freq[i - 1] += 1;
-               continue;
+               face_freq[i] += 1;
             }
          }
 
          for (int i = 0; i < suit_freq.length; i++) {
             if (suits[i].equals(cur_card.getSuit())) {
                suit_freq[i] += 1;
-               continue;
             }
          }
-
-         // face_freq[f] += 1;
-         // suit_freq[s] += 1;
       }
 
       System.out.print("Faces: ");

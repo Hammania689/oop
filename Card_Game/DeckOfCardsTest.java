@@ -29,6 +29,8 @@ public class DeckOfCardsTest {
             System.out.println();
          }
       }
+      System.out.println();
+
    }
 
    // Deal all hands in a deck
