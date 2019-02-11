@@ -82,24 +82,6 @@ public class DeckOfCards {
 
    public int rankHand(Card[] hand) {
 
-      int rank = 0;
-      int[] face_freq = new int[12];
-      int[] suit_freq = new int[4];
-
-      String[] faces = { "Ace", "Deuce", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack",
-            "Queen", "King" };
-      String[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
-
-      for (Card cur_card : hand) {
-         // System.out.println(cur_card + "\n===========");
-
-         int f = find(faces, cur_card.getFace());
-         int s = find(suits, cur_card.getSuit());
-
-         face_freq[f] += 1;
-         suit_freq[s] += 1;
-      }
-
       /**
        * 
        * rank is {0 ... 7}
@@ -116,30 +98,54 @@ public class DeckOfCards {
        * face value) if both two pairs and three cards; where index != to one another
        */
 
+      int rank = 0;
       int straight_counter = 0;
-      // boolean isFullHouse = false;
 
+      int[] face_freq = new int[12];
+      int[] suit_freq = new int[4];
+
+      String[] faces = { "Ace", "Deuce", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack",
+            "Queen", "King" };
+      String[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
+      String[] ranks = { "Plain", "Pair", "Two Pairs", "Three of a Kind", "Four of a Kind", "Flush", "Straight",
+            "Full House" };
+
+      // Iterate through hand and extract freqs O(n)
+      for (Card cur_card : hand) {
+         int f = find(faces, cur_card.getFace());
+         int s = find(suits, cur_card.getSuit());
+
+         face_freq[f] += 1;
+         suit_freq[s] += 1;
+      }
+
+      // Iterate through face freqeuncies and rankHand
       for (int x : face_freq) {
+
+         // Print freqeuncies of face values
          System.out.printf("%-2s", x);
 
-         // if (x == 1) {
-         // straight_counter++;
-         // System.out.println("TICK " + straight_counter);
-         // } else {
-         // straight_counter = 0;
-         // }
-
          switch (x) {
+         // Increment straight_counter ... just incase they get lucky
          case 1:
             straight_counter++;
+
             // Check if hand is a Straight
             if (straight_counter == 5) {
                rank = 6;
             }
             break;
+         // If a three of kind already exists --> Full House
+         // Other wise Increment rank by one for single/two pairs
          case 2:
-            rank += 1;
+            if (rank == 3) {
+               rank = 7;
+            } else {
+               rank += 1;
+            }
             break;
+         // If the a pair already
+         // Three of a Kind
          case 3:
             if (rank == 1) {
                rank = 7;
@@ -153,7 +159,8 @@ public class DeckOfCards {
          default:
             break;
 
-      }}
+         }
+      }
 
       System.out.println();
 
@@ -163,7 +170,6 @@ public class DeckOfCards {
             rank = 5;
          }
       }
-
 
       System.out.println();
       System.out.printf("Rank: %s\n", rank);
@@ -311,8 +317,8 @@ public class DeckOfCards {
       String[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
 
       Card[] hand = new Card[5];
-      hand[0] = new Card(faces[0], suits[0]); // Ace of Hearts
-      hand[1] = new Card(faces[0], suits[1]); // Ace of Diamonds
+      hand[0] = new Card(faces[4], suits[0]); // Ace of Hearts
+      hand[1] = new Card(faces[4], suits[1]); // Ace of Diamonds
       hand[2] = new Card(faces[2], suits[1]); // Three of Diamonds
       hand[3] = new Card(faces[2], suits[2]); // Three of Clubs
       hand[4] = new Card(faces[2], suits[3]); // Three of Spades
