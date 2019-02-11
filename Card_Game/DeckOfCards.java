@@ -81,23 +81,6 @@ public class DeckOfCards {
    }
 
    public int rankHand(Card[] hand) {
-
-      /**
-       * 
-       * rank is {0 ... 7}
-       * 
-       * for (int suit : suits ) if suit == 5 rank = 5
-       * 
-       * 
-       * 0) Nothing 1) a pair if the face value == 2 only once 2) two pairs if the
-       * face value == 2 twice 3) three of a kind (e.g., three jacks) if the face
-       * value == 3 4) four of a kind (e.g., four aces) if the face value == 4 5)
-       * flush (i.e., all five cards of the same suit) if the suit value == 5 once 6)
-       * straight (i.e., five cards of consecutive face values) if the face value == 5
-       * 7) full house (i.e., two cards of one face value and three cards of another
-       * face value) if both two pairs and three cards; where index != to one another
-       */
-
       int rank = 0;
       int straight_counter = 0;
 
@@ -110,6 +93,11 @@ public class DeckOfCards {
       String[] ranks = { "Plain", "Pair", "Two Pairs", "Three of a Kind", "Four of a Kind", "Flush", "Straight",
             "Full House" };
 
+      // Cummalitive probabilites
+      // https://www.cardschat.com/odds-for-dummies.php#commonodds
+      // https://en.wikipedia.org/wiki/Poker_probability
+      double[] hand_stats = { 50.1177, 49.9, 7.92, 2.87, 0.0256, 0.76, 0.367, 0.17 };
+
       // Iterate through hand and extract freqs O(n)
       for (Card cur_card : hand) {
          int f = find(faces, cur_card.getFace());
@@ -119,7 +107,8 @@ public class DeckOfCards {
          suit_freq[s] += 1;
       }
 
-      // Iterate through face freqeuncies and rankHand
+      System.out.print("Faces: ");
+      // Iterate through face freqeuncies and rankHand O(n)
       for (int x : face_freq) {
 
          // Print freqeuncies of face values
@@ -127,14 +116,21 @@ public class DeckOfCards {
 
          switch (x) {
          // Increment straight_counter ... just incase they get lucky
+         case 0:
+            if (straight_counter != 5) {
+               straight_counter = 0;
+            }
+            break;
          case 1:
             straight_counter++;
 
             // Check if hand is a Straight
             if (straight_counter == 5) {
                rank = 6;
+               continue;
             }
             break;
+
          // If a three of kind already exists --> Full House
          // Other wise Increment rank by one for single/two pairs
          case 2:
@@ -144,6 +140,7 @@ public class DeckOfCards {
                rank += 1;
             }
             break;
+
          // If the a pair already
          // Three of a Kind
          case 3:
@@ -153,17 +150,19 @@ public class DeckOfCards {
                rank = 3;
             }
             break;
+
+         // Four of a kind Check
          case 4:
             rank = 4;
             break;
          default:
             break;
-
          }
       }
 
       System.out.println();
-
+      System.out.print("Suites: ");
+      // Iterate through suit to check for Flush O(n)
       for (int x : suit_freq) {
          System.out.printf("%-2s", x);
          if ((x == 5) && (straight_counter != 5)) {
@@ -172,16 +171,44 @@ public class DeckOfCards {
       }
 
       System.out.println();
-      System.out.printf("Rank: %s\n", rank);
-      System.out.println(straight_counter);
+      System.out.printf("Rank: %s  | Cum Prob %.2f%%", ranks[rank], hand_stats[rank]);
+      System.out.println();
       return rank;
    }
 
    public int find(String[] cardVal, String target) {
-      for (int i = 0; i < cardVal.length; i++)
-         if (cardVal[i] == target)
-            return i;
-      return -1;
+      int count = 0;
+      for (String val : cardVal) {
+         if (count >= 11) {
+            System.out.println("STOP THERE");
+         }
+         if (val == target) {
+            return count;
+         }
+         count++;
+      }
+      return 0;
+   }
+
+   public Card[] testPlain() {
+
+      String[] faces = { "Ace", "Deuce", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack",
+            "Queen", "King" };
+      String[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
+
+      Card[] hand = new Card[5];
+      hand[0] = new Card(faces[1], suits[0]); // Two of Hearts
+      hand[1] = new Card(faces[10], suits[1]); // Jack of Diamonds
+      hand[2] = new Card(faces[5], suits[2]); // Six of Clubs
+      hand[3] = new Card(faces[3], suits[2]); // Four of Clubs
+      hand[4] = new Card(faces[4], suits[3]); // Five of Spades
+
+      // Print test hand
+      for (Card card : hand) {
+         System.out.printf("%4s| ", card);
+      }
+      System.out.println();
+      return hand;
    }
 
    public Card[] testPair() {
@@ -199,7 +226,7 @@ public class DeckOfCards {
 
       // Print test hand
       for (Card card : hand) {
-         System.out.printf("%-18s\t| ", card);
+         System.out.printf("%4s| ", card);
       }
       System.out.println();
       return hand;
@@ -220,7 +247,7 @@ public class DeckOfCards {
 
       // Print test hand
       for (Card card : hand) {
-         System.out.printf("%-18s\t| ", card);
+         System.out.printf("%4s| ", card);
       }
       System.out.println();
       return hand;
@@ -241,7 +268,7 @@ public class DeckOfCards {
 
       // Print test hand
       for (Card card : hand) {
-         System.out.printf("%-18s\t| ", card);
+         System.out.printf("%4s| ", card);
       }
       System.out.println();
       return hand;
@@ -262,7 +289,7 @@ public class DeckOfCards {
 
       // Print test hand
       for (Card card : hand) {
-         System.out.printf("%-18s\t| ", card);
+         System.out.printf("%4s| ", card);
       }
       System.out.println();
       return hand;
@@ -283,7 +310,7 @@ public class DeckOfCards {
 
       // Print test hand
       for (Card card : hand) {
-         System.out.printf("%-18s\t| ", card);
+         System.out.printf("%4s| ", card);
       }
       System.out.println();
       return hand;
@@ -304,7 +331,7 @@ public class DeckOfCards {
 
       // Print test hand
       for (Card card : hand) {
-         System.out.printf("%-18s\t| ", card);
+         System.out.printf("%4s| ", card);
       }
       System.out.println();
       return hand;
@@ -325,7 +352,7 @@ public class DeckOfCards {
 
       // Print test hand
       for (Card card : hand) {
-         System.out.printf("%-18s\t| ", card);
+         System.out.printf("%4s| ", card);
       }
       System.out.println();
       return hand;

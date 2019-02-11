@@ -8,22 +8,8 @@ public class DeckOfCardsTest {
       // Code from book
       // dealAllCards();
       // dealAllHands();
-
-      DeckOfCards m = new DeckOfCards();
-      // Card[] pair = m.testPair();
-      // Card[] two_pairs = m.testTwoPair();
-      // Card[] three_kind = m.testThreeOfAKind();
-      // Card[] four_kind = m.testFourOfAKind();
-      // Card[] flush = m.testFlush();
-      // Card[] straight = m.testStraight();
-      Card[] house = m.testFullHouse();
-
-      // m.rankHand(two_pairs);
-      // m.rankHand(three_kind);
-      // m.rankHand(four_kind);
-      // m.rankHand(flush);
-      // m.rankHand(straight);
-      m.rankHand(house);
+      // dealTestHands();
+      compareTwoHands();
 
    }
 
@@ -56,8 +42,80 @@ public class DeckOfCardsTest {
          hand = myDeckOfCards.dealHand();
       }
 
-      int test = myDeckOfCards.rankHand(hand);
-      System.out.println(test);
+      // int test = myDeckOfCards.rankHand(hand);
+      // System.out.println(test);
+
+   }
+
+   // Deal all test ranked hands (Plain to Full House)
+   public static void dealTestHands() {
+
+      DeckOfCards testDeck = new DeckOfCards();
+      Card[] plain = testDeck.testPlain();
+      Card[] pair = testDeck.testPair();
+      Card[] two_pairs = testDeck.testTwoPair();
+      Card[] three_kind = testDeck.testThreeOfAKind();
+      Card[] four_kind = testDeck.testFourOfAKind();
+      Card[] flush = testDeck.testFlush();
+      Card[] straight = testDeck.testStraight();
+      Card[] house = testDeck.testFullHouse();
+
+      System.out.println();
+      testDeck.rankHand(plain);
+      System.out.println();
+      testDeck.rankHand(pair);
+      System.out.println();
+      testDeck.rankHand(two_pairs);
+      System.out.println();
+      testDeck.rankHand(three_kind);
+      System.out.println();
+      testDeck.rankHand(four_kind);
+      System.out.println();
+      testDeck.rankHand(flush);
+      System.out.println();
+      testDeck.rankHand(straight);
+      System.out.println();
+      testDeck.rankHand(house);
+      System.out.println();
+   }
+
+   // Compare Two hands
+   public static void compareTwoHands() {
+      DeckOfCards myDeckOfCards = new DeckOfCards();
+      myDeckOfCards.shuffle(); // place Cards in random order
+      Card[] hand1 = new Card[5];
+      Card[] hand2 = new Card[5];
+
+      String[] ranks = { "Plain", "Pair", "Two Pairs", "Three of a Kind", "Four of a Kind", "Flush", "Straight",
+            "Full House" };
+
+      // print all 52 Cards in the order in which they are dealt
+      // deal and display a Card
+      // hand1 = myDeckOfCards.testFlush();
+      // hand2 = myDeckOfCards.testPlain();
+      // print all 52 Cards in the order in which they are dealt
+
+      // print all 52 Cards in the order in which they are dealt
+      for (int i = 1; i <= 52 / 5; i++) {
+         // deal and display a Card
+         hand1 = myDeckOfCards.dealHand();
+         int rank1 = myDeckOfCards.rankHand(hand1);
+      }
+      // hand2 = myDeckOfCards.dealHand();
+
+      // System.out.println();
+      // int rank1 = myDeckOfCards.rankHand(hand1);
+      // System.out.println();
+      // int rank2 = myDeckOfCards2.rankHand(hand2);
+      // System.out.println();
+
+      // if (rank1 > rank2) {
+      // System.out.printf("%s (Hand 1) > %s (Hand2)", ranks[rank1], ranks[rank2]);
+      // } else if (rank2 > rank1) {
+      // System.out.printf("%s (Hand 2) > %s (Hand 1)", ranks[rank2], ranks[rank1]);
+      // } else {
+      // System.out.printf("%s (Hand 1) === %s (Hand2)", ranks[rank1], ranks[rank2]);
+      // }
 
    }
 }
