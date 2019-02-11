@@ -63,10 +63,10 @@ public class DeckOfCards {
 
          // Display # of Remaining hands + Current hand's cards
          // Deal one Card until the hand is full
-         System.out.print(remaining_hands + "/10) ");
+         System.out.print("Hand " + remaining_hands + "/10) ");
          for (int x = 0; x < hand.length; x++) {
             hand[x] = dealCard();
-            System.out.printf("%-18s\t| ", hand[x]);
+            System.out.printf("%2s| ", hand[x]);
          }
 
          // Update the number of remaining cards
@@ -98,13 +98,27 @@ public class DeckOfCards {
       // https://en.wikipedia.org/wiki/Poker_probability
       double[] hand_stats = { 50.1177, 49.9, 7.92, 2.87, 0.0256, 0.76, 0.367, 0.17 };
 
-      // Iterate through hand and extract freqs O(n)
-      for (Card cur_card : hand) {
-         int f = find(faces, cur_card.getFace());
-         int s = find(suits, cur_card.getSuit());
+      // Iterate through hand and extract freqs O(n^2)
 
-         face_freq[f] += 1;
-         suit_freq[s] += 1;
+      for (Card cur_card : hand) {
+         // int f = find(faces, cur_card.getFace());
+         // int s = find(suits, cur_card.getSuit());
+         for (int i = 1; i <= face_freq.length; i++) {
+            if (faces[i].equals(cur_card.getFace())) {
+               face_freq[i - 1] += 1;
+               continue;
+            }
+         }
+
+         for (int i = 0; i < suit_freq.length; i++) {
+            if (suits[i].equals(cur_card.getSuit())) {
+               suit_freq[i] += 1;
+               continue;
+            }
+         }
+
+         // face_freq[f] += 1;
+         // suit_freq[s] += 1;
       }
 
       System.out.print("Faces: ");
@@ -176,19 +190,19 @@ public class DeckOfCards {
       return rank;
    }
 
-   public int find(String[] cardVal, String target) {
-      int count = 0;
-      for (String val : cardVal) {
-         if (count >= 11) {
-            System.out.println("STOP THERE");
-         }
-         if (val == target) {
-            return count;
-         }
-         count++;
-      }
-      return 0;
-   }
+   /*
+    * Creates threading issues.. public int find(String[] cardVal, String target) {
+    * 
+    * for (int i = 0; i < cardVal.length; ++i) { if (i == 12) {
+    * System.out.println("STOP THERE at index " + i);
+    * System.out.println("Length of arr: " + cardVal.length + " | Target " +
+    * target); System.out.println(cardVal[i]);
+    * 
+    * } System.out.println(i + "/" + (cardVal.length - 1) + " " + cardVal[i]); if
+    * (cardVal[i].equals(target)) { return i;
+    * 
+    * } } return -1; }
+    */
 
    public Card[] testPlain() {
 
@@ -344,8 +358,8 @@ public class DeckOfCards {
       String[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
 
       Card[] hand = new Card[5];
-      hand[0] = new Card(faces[4], suits[0]); // Ace of Hearts
-      hand[1] = new Card(faces[4], suits[1]); // Ace of Diamonds
+      hand[0] = new Card(faces[12], suits[0]); // King of Hearts
+      hand[1] = new Card(faces[12], suits[1]); // King of Diamonds
       hand[2] = new Card(faces[2], suits[1]); // Three of Diamonds
       hand[3] = new Card(faces[2], suits[2]); // Three of Clubs
       hand[4] = new Card(faces[2], suits[3]); // Three of Spades
