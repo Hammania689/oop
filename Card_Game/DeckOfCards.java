@@ -132,20 +132,30 @@ public class DeckOfCards {
          switch (x) {
          case 1:
             straight_counter++;
+            // Check if hand is a Straight
+            if (straight_counter == 5) {
+               rank = 6;
+            }
             break;
          case 2:
             rank += 1;
             break;
          case 3:
-            rank = 3;
+            if (rank == 1) {
+               rank = 7;
+            } else {
+               rank = 3;
+            }
             break;
          case 4:
             rank = 4;
             break;
          default:
             break;
-         }
-      }
+
+      }}
+
+      System.out.println();
 
       for (int x : suit_freq) {
          System.out.printf("%-2s", x);
@@ -154,10 +164,6 @@ public class DeckOfCards {
          }
       }
 
-      // Check if hand is a Straight
-      if (straight_counter == 5) {
-         rank = 6;
-      }
 
       System.out.println();
       System.out.printf("Rank: %s\n", rank);
@@ -289,6 +295,27 @@ public class DeckOfCards {
       hand[1] = new Card(faces[2], suits[0]); // Three of Hearts
       hand[2] = new Card(faces[3], suits[0]); // Four of Hearts
       hand[4] = new Card(faces[4], suits[0]); // Five of Hearts
+
+      // Print test hand
+      for (Card card : hand) {
+         System.out.printf("%-18s\t| ", card);
+      }
+      System.out.println();
+      return hand;
+   }
+
+   public Card[] testFullHouse() {
+
+      String[] faces = { "Ace", "Deuce", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack",
+            "Queen", "King" };
+      String[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
+
+      Card[] hand = new Card[5];
+      hand[0] = new Card(faces[0], suits[0]); // Ace of Hearts
+      hand[1] = new Card(faces[0], suits[1]); // Ace of Diamonds
+      hand[2] = new Card(faces[2], suits[1]); // Three of Diamonds
+      hand[3] = new Card(faces[2], suits[2]); // Three of Clubs
+      hand[4] = new Card(faces[2], suits[3]); // Three of Spades
 
       // Print test hand
       for (Card card : hand) {

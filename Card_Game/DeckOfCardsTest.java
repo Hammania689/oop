@@ -16,12 +16,15 @@ public class DeckOfCardsTest {
       // Card[] four_kind = m.testFourOfAKind();
       // Card[] flush = m.testFlush();
       Card[] straight = m.testStraight();
+      // Card[] house = m.testFullHouse();
 
       // m.rankHand(two_pairs);
       // m.rankHand(three_kind);
       // m.rankHand(four_kind);
       // m.rankHand(flush);
       m.rankHand(straight);
+      // m.rankHand(house);
+
 
    }
 
