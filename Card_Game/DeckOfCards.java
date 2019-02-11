@@ -122,13 +122,17 @@ public class DeckOfCards {
       for (int x : face_freq) {
          System.out.printf("%-2s", x);
 
-         if (x == 1) {
-            straight_counter++;
-         } else {
-            straight_counter = 0;
-         }
+         // if (x == 1) {
+         // straight_counter++;
+         // System.out.println("TICK " + straight_counter);
+         // } else {
+         // straight_counter = 0;
+         // }
 
          switch (x) {
+         case 1:
+            straight_counter++;
+            break;
          case 2:
             rank += 1;
             break;
@@ -141,22 +145,20 @@ public class DeckOfCards {
          default:
             break;
          }
-
-         // Check if hand is a Straight
-         if (straight_counter == 5) {
-            rank = 6;
-         }
       }
-      
-      System.out.println();
-      
+
       for (int x : suit_freq) {
          System.out.printf("%-2s", x);
-         if (x == 5 && straight_counter != 5) {
+         if ((x == 5) && (straight_counter != 5)) {
             rank = 5;
          }
       }
-      
+
+      // Check if hand is a Straight
+      if (straight_counter == 5) {
+         rank = 6;
+      }
+
       System.out.println();
       System.out.printf("Rank: %s\n", rank);
       System.out.println(straight_counter);
