@@ -1,5 +1,5 @@
 // Fig. 10.6: HourlyEmployee.java
-// HourlyEmployee class extends Employee.
+// HourlyEmployee class extends Employee.java.
 
 public class HourlyEmployee extends Employee implements Payable{
    private double wage; // wage per hour
@@ -48,7 +48,7 @@ public class HourlyEmployee extends Employee implements Payable{
    // return hours worked
    public double getHours() {return hours;}
 
-   // calculate earnings; override abstract method earnings in Employee
+   // calculate earnings; override abstract method earnings in Employee.java
    @Override                                                           
    public double getPaymentAmount(){
       if (getHours() <= 40) { // no overtime                           

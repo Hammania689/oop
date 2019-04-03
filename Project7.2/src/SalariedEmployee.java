@@ -1,5 +1,5 @@
 // Fig. 10.5: SalariedEmployee.java
-// SalariedEmployee concrete class extends abstract class Employee.
+// SalariedEmployee concrete class extends abstract class Employee.java.
 
 public class SalariedEmployee extends Employee implements Payable{
    private double weeklySalary;
@@ -30,7 +30,7 @@ public class SalariedEmployee extends Employee implements Payable{
    // return salary
    public double getWeeklySalary() {return weeklySalary;}
 
-   // calculate earnings; override abstract method earnings in Employee
+   // calculate earnings; override abstract method earnings in Employee.java
    @Override                                                           
    public double earnings() {return getWeeklySalary();}                
 

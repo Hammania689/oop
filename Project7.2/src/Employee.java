@@ -1,7 +1,10 @@
 // Fig. 10.4: Employee.java
 // Employee abstract superclass.
 
-public abstract class Employee {
+public abstract class Employee implements Payable {
+   /**
+    *
+    */
    private final String firstName;
    private final String lastName;
    private final String socialSecurityNumber;

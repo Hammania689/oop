@@ -1,5 +1,5 @@
 // Fig. 10.7: CommissionEmployee.java
-// CommissionEmployee class extends Employee.
+// CommissionEmployee class extends Employee.java.
 
 public class CommissionEmployee extends Employee {
    private double grossSales; // gross weekly sales
@@ -49,7 +49,7 @@ public class CommissionEmployee extends Employee {
    // return commission rate
    public double getCommissionRate() {return commissionRate;}
 
-   // calculate earnings; override abstract method earnings in Employee
+   // calculate earnings; override abstract method earnings in Employee.java
    @Override                                                           
    public double earnings() {                                          
       return getCommissionRate() * getGrossSales();                    

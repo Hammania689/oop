@@ -1,5 +1,5 @@
 // Fig. 10.13: Employee_10.13.java
-// Employee abstract superclass that implements Payable.
+// Employee.java abstract superclass that implements Payable.
 
 public abstract class Employee implements Payable {
    private final String firstName;
@@ -23,7 +23,7 @@ public abstract class Employee implements Payable {
    // return social security number
    public String getSocialSecurityNumber() {return socialSecurityNumber;}
 
-   // return String representation of Employee object
+   // return String representation of Employee.java object
    @Override
    public String toString() {
       return String.format("%s %s%nsocial security number: %s", 
@@ -33,7 +33,7 @@ public abstract class Employee implements Payable {
    // abstract method must be overridden by concrete subclasses
    public abstract double earnings(); // no implementation here
 
-   // implementing getPaymentAmount here enables the entire Employee
+   // implementing getPaymentAmount here enables the entire Employee.java
    // class hierarchy to be used in an app that processes Payables  
    public double getPaymentAmount() {return earnings();}            
 } 

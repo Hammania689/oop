@@ -1,5 +1,5 @@
 // Fig. 10.9: PayrollSystemTest.java
-// Employee hierarchy test program.
+// Employee.java hierarchy test program.
 
 public class PayrollSystemTest {
    public static void main(String[] args) {
@@ -27,7 +27,7 @@ public class PayrollSystemTest {
          basePlusCommissionEmployee, 
          "earned", basePlusCommissionEmployee.earnings());
 
-      // create four-element Employee array
+      // create four-element Employee.java array
       Employee[] employees = new Employee[4]; 
 
       // initialize array with Employees        
@@ -44,7 +44,7 @@ public class PayrollSystemTest {
 
          // determine whether element is a BasePlusCommissionEmployee
          if (currentEmployee instanceof BasePlusCommissionEmployee) {
-            // downcast Employee reference to 
+            // downcast Employee.java reference to
             // BasePlusCommissionEmployee reference
             BasePlusCommissionEmployee employee = 
                (BasePlusCommissionEmployee) currentEmployee;
@@ -62,7 +62,7 @@ public class PayrollSystemTest {
 
       // get type name of each object in employees array
       for (int j = 0; j < employees.length; j++) {      
-         System.out.printf("Employee %d is a %s%n", j,  
+         System.out.printf("Employee.java %d is a %s%n", j,
             employees[j].getClass().getName());         
       }                                                 
    } 
