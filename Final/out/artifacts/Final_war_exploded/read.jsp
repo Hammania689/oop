@@ -47,12 +47,19 @@ String line;
             <td> State </td>
             <td> Zip </td>
             <td> Country </td>
+            <td> Permanent </td>
+            <td> Residency </td>
+            <td> Family </td>
+            <td> Citizenship </td>
+            <td> Hispanic </td>
+            <td> Ethnicity </td>
             <td> Military </td>
             <td> CFirst </td>
             <td> CLast </td>
             <td> CEmail </td>
             <td> GPA </td>
             <td> GPAScale </td>
+            <td> ACT </td>
             <td> Campus </td>
             <td> Felony </td>
             <td> Suspension </td>

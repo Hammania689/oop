@@ -23,10 +23,16 @@
     String HomePhone = request.getParameter("HomePhone");
     String Cell = request.getParameter("Cell");
     String Email = request.getParameter("Email");
-    String DOB = request.getParameter("DOB");
+    String DOB = request.getParameter("MONTH") + request.getParameter("DAY") + request.getParameter("YEAR");
     String Gender = request.getParameter("Gender");
     String State = request.getParameter("State");
     String Zip = request.getParameter("Zip");
+    String Permanent  = request.getParameter("Permanent");
+    String Residency = request.getParameter("Residency");
+    String Family = request.getParameter("Family");
+    String Citizenship = request.getParameter("Citizenship");
+    String Hispanic = request.getParameter("Hispanic");
+    String Ethnicity = request.getParameter("Ethnicity");
     String Country = request.getParameter("Country");
     String Military = request.getParameter("Military");
     String CFirst = request.getParameter("CFirst");
@@ -34,6 +40,7 @@
     String CEmail = request.getParameter("CEmail");
     String GPA = request.getParameter("GPA");
     String GPAScale = request.getParameter("GPAScale");
+    String ACT = request.getParameter("ACT");
     String Campus = request.getParameter("Campus");
     String Felony = request.getParameter("Felony");
     String Suspension = request.getParameter("Suspension");
@@ -60,12 +67,19 @@
             State + newLine +
             Zip + newLine +
             Country + newLine +
+            Permanent + newLine +
+            Residency + newLine +
+            Family + newLine +
+            Citizenship + newLine +
+            Hispanic + newLine +
+            Ethnicity + newLine +
             Military + newLine +
             CFirst + newLine +
             CLast + newLine +
             CEmail + newLine +
             GPA + newLine +
             GPAScale + newLine +
+            ACT + newLine +
             Campus + newLine +
             Felony + newLine +
             Suspension + newLine +
@@ -215,6 +229,65 @@
 
         <tr>
             <td>
+                Are you a Mississippi resident?
+            </td>
+            <td>
+                <%= Permanent%>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+
+                <label>To whom should we send information? </label>
+            </td>
+            <td>
+             <%= Family%>
+
+            </td>
+
+        </tr>
+        <tr>
+
+            <td>
+
+
+                <label class="description" for="element_23">Are you a citizen or permanent resident of the United States?
+                </label>
+            </td>
+            <td>
+                <%= Citizenship %>
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>
+
+                <label class="description" for="element_24">Are you Hispanic or Latino? </label>
+            </td>
+            <td>
+                <%= Hispanic %>
+            </td>
+
+        </tr>
+
+
+        <tr>
+            <td>
+
+                <label>Select one or more of the following races: </label>
+            </td>
+            <td>
+            <td>
+            <%= Ethnicity%>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
                 Your mailitary status
             </td>
 
@@ -271,7 +344,15 @@
             </td>
         </tr>
 
+        <tr>
+            <td>
+                Did you take the ACT?
+            </td>
+            <td>
 
+                <%= ACT %>
+            </td>
+        </tr>
         <tr>
             <td>
                 <label class="description" for="element_29">Select a campus </label>
